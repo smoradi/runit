@@ -1,0 +1,12 @@
+Well this is a very simple xUnit for ruby.
+
+You may wish to play with it and/or improve it.
+
+This was the output of my installed ruby -v command:
+ruby 1.8.7 (2010-01-10 patchlevel 249) [i486-linux]
+
+$ ruby -v
+$ cd runit
+$ ruby main.rb
+$ ruby calctest.rb
+$ vi calctest.rb
