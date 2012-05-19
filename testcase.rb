@@ -9,7 +9,7 @@ class TestCase
 
   def setUp
   end
-  
+
   def run(result)
     result.testStarted()
     setUp
@@ -17,14 +17,14 @@ class TestCase
       send(@name)
     rescue StandardError => ex
       result.testFailed()
-      result.testError(ex.message)
+      result.testError(@name, ex.message)
     end
     tearDown
     return result
   end
- 
+
   def tearDown
-  end  
+  end
 
   def assert(test)
     if test == true
@@ -36,9 +36,9 @@ class TestCase
   def assert_equal(expected, actual)
     if expected == actual
       return true
-    else 
+    else
        raise StandardError, "Assert Equals failed, expected <#{expected}> =! <#{actual}>" 
     end
   end
-  
+
 end

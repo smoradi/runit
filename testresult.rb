@@ -4,22 +4,18 @@ class TestResult
   def initialize
     @runCount=0
     @errorCount=0
-    @error="Error:"
-  end 
+  end
   def testStarted
     @runCount= @runCount + 1
   end
   def testFailed
     @errorCount= @errorCount + 1
   end
-  def testError(message)
-    @error= @error + message
+  def testError(testName, message)
+    puts "\nERROR!!" + testName + ":" + message + "\n"
   end
   def summary
     result= "#{@runCount} run, #{@errorCount} failed"
-    if (@errorCount > 0)
-      result+="\n#{@error}"
-    end
     return result
   end
 

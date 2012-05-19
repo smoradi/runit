@@ -16,11 +16,11 @@ class TestCaseTest < TestCase
     test.run(@result)
     assert_equal "setUp testMethod tearDown", test.log
   end
-  
+
   def testResult
     test= WasRun.new("testMethod")
     test.run(@result)
-    assert_equal "1 run, 0 failed", @result.summary()  
+    assert_equal "1 run, 0 failed", @result.summary()
   end
   def testFailedResult
    test= WasRun.new("testBrokenMethod")
@@ -39,7 +39,7 @@ class TestCaseTest < TestCase
     suite.run(@result)
     assert_equal "2 run, 1 failed", @result.summary()
   end
-  
+
 end
 
 if __FILE__ == $0
