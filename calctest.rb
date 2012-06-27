@@ -43,5 +43,8 @@ if __FILE__ == $0
   suite.add(CalcTestCase.new("testMixOfActions"))
   result= TestResult.new
   suite.run(result)
+  i= 0
+  result.errors.each { |e| i= i+1; puts "\n#{i}) #{e.message}" }
+  puts "\nTook #{result.time} seconds"
   puts result.summary()
 end

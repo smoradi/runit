@@ -51,5 +51,6 @@ if __FILE__ == $0
   suite.add(TestCaseTest.new("testSuite"))
   result= TestResult.new
   suite.run(result)
+  puts "\nTook #{result.time} seconds"
   puts result.summary()
 end

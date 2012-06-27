@@ -1,4 +1,3 @@
-
 require File.expand_path(File.dirname(__FILE__) + '/testresult')
 
 class TestCase
@@ -13,11 +12,13 @@ class TestCase
   def run(result)
     result.testStarted()
     setUp
-    begin 
+    begin
       send(@name)
+      print "."
     rescue StandardError => ex
       result.testFailed()
-      result.testError(@name, ex.message)
+      print "F"
+      result.add_error(ex)
     end
     tearDown
     return result
@@ -37,7 +38,7 @@ class TestCase
     if expected == actual
       return true
     else
-       raise StandardError, "Assert Equals failed, expected <#{expected}> =! <#{actual}>" 
+       raise StandardError, "Assert Equals failed, expected <#{expected}> =! <#{actual}>"
     end
   end
 
