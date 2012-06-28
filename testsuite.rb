@@ -1,3 +1,4 @@
+module RUnit
 
 class TestSuite
   def initialize
@@ -18,5 +19,5 @@ class TestSuite
     result.add_time(end_time - start_time)
     return result
   end
-
+end
 end

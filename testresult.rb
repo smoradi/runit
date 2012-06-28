@@ -1,3 +1,4 @@
+module RUnit
 
 class TestResult
   attr_reader :runCount, :errorCount, :time, :errors
@@ -24,4 +25,5 @@ class TestResult
   def add_time(time)
     @time= @time + time
   end
+end
 end

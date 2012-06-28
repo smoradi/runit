@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/testcase')
 
-class WasRun < TestCase
+class WasRun < RUnit::TestCase
   attr_reader :wasRun, :wasSetUp
   attr_accessor :name, :log
   def initialize(name)

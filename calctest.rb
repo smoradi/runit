@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__) + '/calcrun')
 
 #require 'test/unit/assertions'
 
-class CalcTestCase < TestCase
+class CalcTestCase < RUnit::TestCase
   def setUp
     @calc= CalcRun.new
   end
@@ -35,13 +35,13 @@ class CalcTestCase < TestCase
 end
 
 if __FILE__ == $0
-  suite= TestSuite.new
+  suite= RUnit::TestSuite.new
   suite.add(CalcTestCase.new("testPlus"))
   suite.add(CalcTestCase.new("testMines"))
   suite.add(CalcTestCase.new("testMultiple"))
   suite.add(CalcTestCase.new("testDivide"))
   suite.add(CalcTestCase.new("testMixOfActions"))
-  result= TestResult.new
+  result= RUnit::TestResult.new
   suite.run(result)
   i= 0
   result.errors.each { |e| i= i+1; puts "\n#{i}) #{e.message}" }

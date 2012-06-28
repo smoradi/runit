@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/testresult')
 
+module RUnit
+
 class TestCase
   attr_accessor :name
   def initialize(name)
@@ -41,5 +43,5 @@ class TestCase
        raise StandardError, "Assert Equals failed, expected <#{expected}> =! <#{actual}>"
     end
   end
-
+end
 end
