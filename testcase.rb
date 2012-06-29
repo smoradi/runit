@@ -1,8 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/testresult')
+require File.expand_path('../asserts', __FILE__)
+require File.expand_path('../testresult', __FILE__)
 
 module RUnit
 
-class TestCase
+class TestCase < RUnit::Assert
   attr_accessor :name
   def initialize(name)
     @name= name
@@ -19,8 +20,8 @@ class TestCase
       print "."
     rescue StandardError => ex
       result.testFailed()
-      print "F"
       result.add_error(ex)
+      print "F"
     end
     tearDown
     return result
@@ -29,19 +30,5 @@ class TestCase
   def tearDown
   end
 
-  def assert(test)
-    if test == true
-      return true
-    else
-      raise StandardError, "Assert failed, StandardError works!"
-    end
-  end
-  def assert_equal(expected, actual)
-    if expected == actual
-      return true
-    else
-       raise StandardError, "Assert Equals failed, expected <#{expected}> =! <#{actual}>"
-    end
-  end
 end
 end

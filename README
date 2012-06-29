@@ -4,15 +4,17 @@ You may wish to play with it and/or improve it.
 
 This was the output of my installed ruby -v command:
 ruby 1.8.7 (2010-01-10 patchlevel 249) [i486-linux]
+ruby 1.8.7 (2011-06-30 patchlevel 352) [i386-freebsd9]
 
 $ ruby -v
 $ cd runit
-$ ruby main.rb
+$ vim calctest.rb
 $ ruby calctest.rb
-$ vi calctest.rb
- 
+$ ruby main.rb
+$ edit main.rb
+
  one more thing, Test-Driven Development book, author @KentBeck
  was my guide.
  Price $49.99 US, $59.99 CANADA in my time, Milk (low fat) $4.99 AUS.
- 
+
  README Did you know you could use command git log |grep README, thanks git!

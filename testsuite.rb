@@ -1,22 +1,38 @@
 module RUnit
 
 class TestSuite
+  attr_accessor :orderedTests, :randomTests
   def initialize
-    @tests= Array.new
+    @orderedTests= Array.new
+    @randomTests= Array.new
   end
-  def add(test)
-    @tests << test
+  def add (test, row = nil)
+    if ( row.nil? )
+      @randomTests << test
+    else
+      @orderedTests[row]= test
+    end
   end
 
-  def addTestCase(testcase)
+  def addTestCase (testcase)
     # TODO:: automatically add all test methods
   end
 
-  def run(result)
+  def run (result)
     start_time= Time.now
-    @tests.each {|test| test.run(result)}
-    end_time = Time.now
-    result.add_time(end_time - start_time)
+    @orderedTests.each {|test| if (!test.nil?); test.run(result); end }
+    @randomTests.each {|test| test.run(result)}
+    result.add_time(Time.now - start_time)
+    return result
+  end
+
+  def runAllPossibleOrders (result)
+    start_time= Time.now
+    array= @orderedTests + @randomTests
+    array.permutation(array.size) {|array_x|
+      array_x.each {|test| if (!test.nil?); test.run(result); end }
+    }
+    result.add_time(Time.now - start_time)
     return result
   end
 end

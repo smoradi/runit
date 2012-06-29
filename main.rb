@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-require File.expand_path(File.dirname(__FILE__) + '/wasrun')
-require File.expand_path(File.dirname(__FILE__) + '/testcase')
-require File.expand_path(File.dirname(__FILE__) + '/testresult')
-require File.expand_path(File.dirname(__FILE__) + '/testsuite')
-
-require 'test/unit/assertions'
+require File.expand_path('../wasrun', __FILE__)
+require File.expand_path('../testcase', __FILE__)
+require File.expand_path('../testsuite', __FILE__)
+require File.expand_path('../testresult', __FILE__)
 
 class TestCaseTest < RUnit::TestCase
   def setUp
@@ -44,13 +42,14 @@ end
 
 if __FILE__ == $0
   suite= RUnit::TestSuite.new
-  suite.add(TestCaseTest.new("testTemplateMethod"))
-  suite.add(TestCaseTest.new("testResult"))
-  suite.add(TestCaseTest.new("testFailedResult"))
+  suite.add(TestCaseTest.new("testTemplateMethod"), 0)
+  suite.add(TestCaseTest.new("testResult"), 1)
+  suite.add(TestCaseTest.new("testFailedResult"), 2)
   suite.add(TestCaseTest.new("testFailedResultFormatting"))
-  suite.add(TestCaseTest.new("testSuite"))
+  suite.add(TestCaseTest.new("testSuite"), 4)
   result= RUnit::TestResult.new
   suite.run(result)
+  result.errors.each { |e| puts "\n #{e.message}" }
   puts "\nTook #{result.time} seconds"
   puts result.summary()
 end

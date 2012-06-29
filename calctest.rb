@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-require File.expand_path(File.dirname(__FILE__) + '/testcase')
-require File.expand_path(File.dirname(__FILE__) + '/testsuite')
-require File.expand_path(File.dirname(__FILE__) + '/testresult')
-require File.expand_path(File.dirname(__FILE__) + '/calcrun')
-
-#require 'test/unit/assertions'
+require File.expand_path('../testcase', __FILE__)
+require File.expand_path('../testsuite', __FILE__)
+require File.expand_path('../testresult', __FILE__)
+require File.expand_path('../calcrun', __FILE__)
 
 class CalcTestCase < RUnit::TestCase
   def setUp
@@ -36,15 +34,14 @@ end
 
 if __FILE__ == $0
   suite= RUnit::TestSuite.new
-  suite.add(CalcTestCase.new("testPlus"))
+  suite.add(CalcTestCase.new("testPlus"), 0)
   suite.add(CalcTestCase.new("testMines"))
-  suite.add(CalcTestCase.new("testMultiple"))
   suite.add(CalcTestCase.new("testDivide"))
-  suite.add(CalcTestCase.new("testMixOfActions"))
+  suite.add(CalcTestCase.new("testMultiple"), 1)
+  suite.add(CalcTestCase.new("testMixOfActions"), 2)
   result= RUnit::TestResult.new
-  suite.run(result)
-  i= 0
-  result.errors.each { |e| i= i+1; puts "\n#{i}) #{e.message}" }
+  suite.run(result) # suite.runAllPossibleOrders(result)
+  result.errors.each { |e| puts "\n #{e.message}" }
   puts "\nTook #{result.time} seconds"
   puts result.summary()
 end
